@@ -2,6 +2,7 @@ package infrastructure.resources;
 
 import api.CandidateApi;
 import api.dto.in.CreateCandidate;
+import api.dto.in.UpdateCandidate;
 import api.dto.out.CandidateOut;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -32,6 +33,13 @@ public class CandidateResource {
     @GET
     public List<CandidateOut> list(){
         return api.list();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    public CandidateOut update(@PathParam("id") String id, UpdateCandidate dto) {
+        return api.update(id, dto);
     }
 
 
