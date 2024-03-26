@@ -1,6 +1,8 @@
 package api;
 
 import api.dto.in.CreateCandidate;
+import api.dto.out.CandidateOut;
+import domain.Candidate;
 import domain.CandidateService;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -15,5 +17,11 @@ public class CandidateApi {
 
     public void create(CreateCandidate dto) {
         service.save(dto.toDomain());
+    }
+
+    public CandidateOut update(String id, api.dto.in.UpdateCandidate dto){
+        service.save(dto.toDomain(id));
+
+        return CandidateOut.fromDomain(service.findById(id));
     }
 }
