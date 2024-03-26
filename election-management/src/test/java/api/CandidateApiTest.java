@@ -67,4 +67,18 @@ class CandidateApiTest {
         assertEquals(CandidateOut.fromDomain(candidate), response);
 
     }
+
+    @Test
+    void list(){
+        var candidates = Instancio.stream(Candidate.class).limit(10).toList();
+
+        when(candidateService.findAll()).thenReturn(candidates);
+
+        var response = candidateApi.list();
+
+        verify(candidateService).findAll();
+        verifyNoMoreInteractions(candidateService);
+
+        assertEquals(candidates.stream().map(CandidateOut::fromDomain).toList(), response);
+    }
 }

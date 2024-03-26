@@ -6,6 +6,8 @@ import domain.Candidate;
 import domain.CandidateService;
 import jakarta.enterprise.context.ApplicationScoped;
 
+import java.util.List;
+
 @ApplicationScoped
 public class CandidateApi {
 
@@ -23,5 +25,10 @@ public class CandidateApi {
         service.save(dto.toDomain(id));
 
         return CandidateOut.fromDomain(service.findById(id));
+    }
+
+    public List<CandidateOut> list() {
+
+        return service.findAll().stream().map(CandidateOut::fromDomain).toList();
     }
 }
