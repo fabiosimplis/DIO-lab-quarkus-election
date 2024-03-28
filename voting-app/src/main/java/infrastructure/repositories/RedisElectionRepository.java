@@ -39,9 +39,15 @@ public class RedisElectionRepository implements ElectionRepository {
     public List<Election> findAll() {
         LOGGER.info("Retrieving election from redis");
 
-        return keyCommands.keys("elections:*")
+        return keyCommands.keys("election:*")
                 .stream()
                 .map(id -> findById(id.replace("elections:", "")))
                 .toList();
+    }
+
+    @Override
+    public void vote(String electionId, Candidate candidate) {
+        LOGGER.info("Voting for " + candidate.id());
+        sortedSetCommands.zincrby("election:" + electionId, 1, candidate.id() );
     }
 }
