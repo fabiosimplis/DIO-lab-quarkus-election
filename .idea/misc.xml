@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/vote-app/pom.xml" />
         <option value="$PROJECT_DIR$/result-app/pom.xml" />
         <option value="$PROJECT_DIR$/election-management/pom.xml" />
+        <option value="$PROJECT_DIR$/voting-app/pom.xml" />
       </list>
     </option>
   </component>
