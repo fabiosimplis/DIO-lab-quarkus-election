@@ -34,6 +34,11 @@ public class RedisElectionRepository implements ElectionRepository {
         pubSubCommands.publish("elections", election.id());
     }
 
+    @Override
+    public List<Election> findAll() {
+        throw  new UnsupportedOperationException();
+    }
+
     public Election sync(Election election) {
         var map = commands.zrangebyscoreWithScores("election:" + election.id(),
                         ScoreRange.from(Integer.MIN_VALUE, Integer.MAX_VALUE))
