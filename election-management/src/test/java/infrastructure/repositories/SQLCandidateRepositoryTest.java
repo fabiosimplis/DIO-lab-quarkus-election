@@ -7,6 +7,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +26,7 @@ class SQLCandidateRepositoryTest extends CandidateRepositoryTest {
     }
 
 
-    @AfterEach
+    @BeforeEach
     @TestTransaction
     void tearDown(){
         //Limpar a tabela a cada execução de teste
